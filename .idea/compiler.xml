@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="51microServices" />
+        <module name="animeCharacter" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="51microServices" target="17" />
+      <module name="animeCharacter" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
