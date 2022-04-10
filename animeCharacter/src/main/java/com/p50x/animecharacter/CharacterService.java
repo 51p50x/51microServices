@@ -40,26 +40,22 @@ public class CharacterService {
 
     @Transactional
     public void modifyCharacter(Long characterId, CharacterRequest characterRequest){
-        boolean characterExist = characterRepository.existsById(characterId);
 
-        if(!characterExist){
-            throw new IllegalStateException(
-                    "Anime character with id "+characterId+" does not exist"
-            );
-        }
-
-        Optional<Character> character = characterRepository.findById(characterId);
+        Character character = characterRepository.findById(characterId)
+                .orElseThrow(()-> new IllegalStateException(
+                        "Anime Character with id "+characterId+" does not exist"
+                ));
 
         if(characterRequest.name() != null &&
                 characterRequest.name().length() > 0 &&
-                !Objects.equals(character.get().getName(), characterRequest.name())){
-            character.get().setName(characterRequest.name());
+                !Objects.equals(character.getName(), characterRequest.name())){
+            character.setName(characterRequest.name());
         }
 
         if(characterRequest.series() != null &&
                 characterRequest.series().length() > 0 &&
-                !Objects.equals(character.get().getSeries(), characterRequest.series())){
-            character.get().setSeries(characterRequest.series());
+                !Objects.equals(character.getSeries(), characterRequest.series())){
+            character.setSeries(characterRequest.series());
         }
     }
 }
