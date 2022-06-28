@@ -2,6 +2,7 @@ package com.p50x.animecharacter;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -15,6 +16,8 @@ public class CharacterService {
 
     private final CharacterRepository characterRepository;
 
+    private final RestTemplate restTemplate;
+
     public List<Character> getCharacters(){
         return characterRepository.findAll();
     }
@@ -26,6 +29,15 @@ public class CharacterService {
                 .createdDate(LocalDate.now())
                 .build();
         characterRepository.save(character);
+        ValidResponse validResponse = restTemplate.getForObject(
+                "http://localhost:8082/api/v1/valid-check/{characterId}",
+                ValidResponse.class,
+                character.getId()
+        );
+
+        if(!validResponse.isValid()){
+            throw new IllegalStateException("not valid");
+        }
     }
 
     public void deleteCharacter(Long characterId){

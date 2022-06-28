@@ -8,11 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="animeCharacter" />
+        <module name="validate" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="51microServices" target="17" />
-      <module name="animeCharacter" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
