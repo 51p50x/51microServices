@@ -11,6 +11,7 @@
   <modules>
     <module>animeCharacter</module>
     <module>validate</module>
+    <module>eureka-server</module>
   </modules>
 
   <name>51microServices</name>

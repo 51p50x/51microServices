@@ -30,7 +30,7 @@ public class CharacterService {
                 .build();
         characterRepository.save(character);
         ValidResponse validResponse = restTemplate.getForObject(
-                "http://localhost:8082/api/v1/valid-check/{characterId}",
+                "http://VALIDATE/api/v1/valid-check/{characterId}",
                 ValidResponse.class,
                 character.getId()
         );
