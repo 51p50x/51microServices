@@ -12,6 +12,7 @@
     <module>animeCharacter</module>
     <module>validate</module>
     <module>eureka-server</module>
+      <module>clients</module>
   </modules>
 
   <name>51microServices</name>
@@ -60,6 +61,10 @@
           <artifactId>junit-vintage-engine</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
   </dependencies>
 

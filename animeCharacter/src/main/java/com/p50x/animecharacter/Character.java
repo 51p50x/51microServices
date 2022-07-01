@@ -20,7 +20,7 @@ public class Character {
             strategy = GenerationType.SEQUENCE,
             generator = "customer_id_sequence"
     )
-    private Long Id;
+    private Integer Id;
 
     private String name;
 

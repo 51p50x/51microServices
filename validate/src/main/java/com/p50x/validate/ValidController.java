@@ -1,5 +1,6 @@
 package com.p50x.validate;
 
+import com.p50x.clients.validate.ValidResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

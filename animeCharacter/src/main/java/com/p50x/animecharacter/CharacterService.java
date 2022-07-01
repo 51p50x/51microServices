@@ -1,22 +1,21 @@
 package com.p50x.animecharacter;
 
+import com.p50x.clients.validate.ValidResponse;
+import com.p50x.clients.validate.ValidateClient;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class CharacterService {
 
     private final CharacterRepository characterRepository;
-
-    private final RestTemplate restTemplate;
+    private final ValidateClient validateClient;
 
     public List<Character> getCharacters(){
         return characterRepository.findAll();
@@ -29,11 +28,9 @@ public class CharacterService {
                 .createdDate(LocalDate.now())
                 .build();
         characterRepository.save(character);
-        ValidResponse validResponse = restTemplate.getForObject(
-                "http://VALIDATE/api/v1/valid-check/{characterId}",
-                ValidResponse.class,
-                character.getId()
-        );
+
+        ValidResponse validResponse =
+                validateClient.isValidResponse(character.getId());
 
         if(!validResponse.isValid()){
             throw new IllegalStateException("not valid");
