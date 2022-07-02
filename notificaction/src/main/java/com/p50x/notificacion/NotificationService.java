@@ -16,7 +16,8 @@ public class NotificationService {
         Notification notification = Notification.builder()
                 .toCustomerId(notificationRequest.toCustomerId())
                 .toCustomerEmail(notificationRequest.toCustomerEmail())
-                .message(notificationRequest.message())
+                .message("added register for "+notificationRequest.message())
+                .sender("51p50x")
                 .sentAt(LocalDateTime.now())
                 .build();
         notificationRepository.save(notification);
