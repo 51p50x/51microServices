@@ -1,17 +1,13 @@
-package com.p50x.animecharacter;
+package com.p50x.notificacion;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableEurekaClient
-@EnableFeignClients(
-        basePackages = "com.p50x.clients"
-)
-public class CharacterApplication {
+public class NotificationApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CharacterApplication.class, args);
+        SpringApplication.run(NotificationApplication.class,args);
     }
 }

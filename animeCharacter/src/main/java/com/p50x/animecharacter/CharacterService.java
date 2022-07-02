@@ -1,5 +1,7 @@
 package com.p50x.animecharacter;
 
+import com.p50x.clients.notification.NotificationClient;
+import com.p50x.clients.notification.NotificationRequest;
 import com.p50x.clients.validate.ValidResponse;
 import com.p50x.clients.validate.ValidateClient;
 import lombok.AllArgsConstructor;
@@ -16,6 +18,8 @@ public class CharacterService {
 
     private final CharacterRepository characterRepository;
     private final ValidateClient validateClient;
+
+    private final NotificationClient notificationClient;
 
     public List<Character> getCharacters(){
         return characterRepository.findAll();
@@ -35,6 +39,12 @@ public class CharacterService {
         if(!validResponse.isValid()){
             throw new IllegalStateException("not valid");
         }
+
+        notificationClient.sendNotification(new NotificationRequest(
+                character.getId(),
+                character.getSeries(),
+                character.getName()
+        ));
     }
 
     public void deleteCharacter(Long characterId){
