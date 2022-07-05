@@ -21,6 +21,7 @@ public class CharacterController {
 
     @PostMapping("/addCharacter")
     public void addCharacter(@RequestBody CharacterRequest characterRequest){
+        log.info("character request values {}",characterRequest);
         characterService.addCharacter(characterRequest);
     }
 
